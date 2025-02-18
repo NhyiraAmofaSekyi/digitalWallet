@@ -23,8 +23,13 @@ const WalletActions: React.FC<WalletActionsProps> = ({ user, wallet })  => {
       return;
     }
 
+    if (!/^\d+(\.\d{1,2})?$/.test(amount.trim())) {
+      alert("Invalid amount. Please enter a valid number.");
+      return;
+    }
+
     const transactionData: Transaction = {
-      type: isDialogOpen as "deposit" | "transfer" | "withdrawal", // ✅ Ensure correct type
+      type: isDialogOpen as "deposit" | "transfer" | "withdrawal", 
       amount: parseFloat(amount),
       senderWalletId: isDialogOpen === "withdrawal" || isDialogOpen === "transfer" ? wallet?.id : null,
       receiverWalletId: isDialogOpen === "deposit" ? wallet?.id : transferWallet || null,

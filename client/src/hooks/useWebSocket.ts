@@ -17,7 +17,7 @@ export const useWebSocket = (
       console.log("🔌 Cleaning up WebSocket connection...");
       closeWebSocket();
     };
-  }, [walletId]); 
+  }, [walletId, updateBalance, addTransaction]); 
 
   return {}; 
 };

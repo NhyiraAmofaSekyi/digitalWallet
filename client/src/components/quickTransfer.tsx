@@ -23,6 +23,11 @@ const QuickTransfer: React.FC<QuickTransferProps> = ({ user, wallet }) => {
       return;
     }
 
+    if (!/^\d+(\.\d{1,2})?$/.test(amount.trim())) {
+      alert("Invalid amount. Please enter a valid number.");
+      return;
+    }
+
     // Convert amount to number and validate
     const parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount <= 0) {

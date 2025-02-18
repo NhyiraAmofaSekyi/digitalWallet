@@ -1,7 +1,7 @@
 
 ---
 
-## **1. Running the Entire Application in Docker** 🐳
+## **1. Running the Entire Application in Docker** 
 
 If you want to **containerize** the entire app (API + Database + Client), navigate to the **root directory** and run:
 
@@ -9,14 +9,14 @@ If you want to **containerize** the entire app (API + Database + Client), naviga
 docker compose --env-file .example.env up --build
 ```
 
-### **📌 What This Does:**
+### ** What This Does:**
 - Builds the **PostgreSQL database** container.
 - Builds and starts the **API** in a container.
 - Builds and starts the **React Client** in a container.
 
 ---
 
-## **3. Environment Variables** 🔑
+## **3. Environment Variables** 
 
 Before running the application, ensure you configure your **`.env`** file. You can use the provided example:
 
@@ -28,7 +28,7 @@ Then, update `.env` with your values before running the app.
 
 ---
 
-## **4. Accessing the App** 🌍
+## **4. Accessing the App** 
 
 - **Frontend (React App):** `http://localhost:5173`
 - **API (ASP.NET 9 Backend):** `http://localhost:8080`
@@ -36,7 +36,7 @@ Then, update `.env` with your values before running the app.
 
 ---
 
-## **5. Stopping the Application** ⏹️
+## **5. Stopping the Application** ⏹
 
 - **For Docker:**  
   ```sh
@@ -48,9 +48,9 @@ Then, update `.env` with your values before running the app.
 -
 
 
-# **Digital Wallet - Setup & Running Guide** 🚀
+# **Digital Wallet - Setup & Running Guide** 
 
-## **2. Running the Application Locally (Development Mode)** 🖥️
+## **2. Running the Application Locally (Development Mode)** 
 
 ### **📌 Prerequisites**
 - **Node.js** (for the client)  
@@ -89,7 +89,7 @@ dotnet wallet run dev
 
 ---
 
-### **📍 Step 3: Start the Client (React + Vite)** 🌐
+### **📍 Step 3: Start the Client (React + Vite)** 
 Navigate to the **Client directory**:
 
 ```sh

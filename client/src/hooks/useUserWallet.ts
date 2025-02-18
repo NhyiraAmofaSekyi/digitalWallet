@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { User, Wallet } from "../../types";
-import { useWebSocket } from "./useWebSocket";
+// import { useWebSocket } from "./useWebSocket";
 import { useTransactions } from "./useTransactions";
 import { closeWebSocket } from "../services/webSocket/websocketService";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ export const useUserWallet = () => {
   const [user, setUser] = useState<User | null>(() => JSON.parse(localStorage.getItem("user") || "null"));
   const [wallet, setWallet] = useState<Wallet | null>(() => JSON.parse(localStorage.getItem("wallet") || "null"));
   const [balance, setBalance] = useState<number>(() => JSON.parse(localStorage.getItem("balance") || "0"));
-  const { transactions, addTransaction, clearTransactions } = useTransactions(user);
+  const { transactions, clearTransactions, setTransactions, fetchTransactions  } = useTransactions(user);
 
   
   
@@ -78,6 +78,8 @@ export const useUserWallet = () => {
       if (data.user && data.wallet) {
         setUserWallet(data.user, data.wallet);
       }
+
+      await fetchTransactions();
       alert(`Login Successful: ${JSON.stringify(data.message)}`);
       return true
     } catch (error) {
@@ -105,7 +107,6 @@ export const useUserWallet = () => {
 
       if (data.user && data.wallet) {
         setUserWallet(data.user, data.wallet);
-
       }
       alert(`Login Successful: ${JSON.stringify(data.message)}`);
       return true
@@ -122,9 +123,7 @@ export const useUserWallet = () => {
     localStorage.setItem("balance", JSON.stringify(newBalance));
   };
 
-  useWebSocket(wallet?.id ?? null, updateBalance, addTransaction);
+  // useWebSocket(wallet?.id ?? null, updateBalance, addTransaction);
 
-
-
-  return { user, wallet, balance, setUserWallet, logout, updateBalance, transactions, login, register };
+  return { user, wallet, balance, logout, updateBalance, transactions, login, register ,setBalance , setTransactions};
 };

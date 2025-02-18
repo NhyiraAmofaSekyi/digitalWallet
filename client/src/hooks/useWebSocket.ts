@@ -9,15 +9,15 @@ export const useWebSocket = (
 ) => {
   useEffect(() => {
     if (walletId) {
-      console.log("🔌 Connecting WebSocket for wallet:", walletId);
+
       connectWebSocket(walletId, updateBalance, addTransaction);
     }
 
     return () => {
-      console.log("🔌 Cleaning up WebSocket connection...");
+
       closeWebSocket();
     };
-  }, [walletId, updateBalance, addTransaction]); 
+  }, [walletId]); 
 
   return {}; 
 };

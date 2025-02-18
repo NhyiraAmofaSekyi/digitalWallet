@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import Button from "./button";
 import Input from "./input";
 import { Transaction, User, Wallet } from "../../types";
-import { createTransaction } from "../lib/transtaction";
+// import { createTransaction } from "../lib/transtaction";
 
 interface QuickTransferProps {
   user: User | null;
   wallet: Wallet | null;
+  createTransaction : (userId: number, transaction: Transaction)=> Promise<{ success: boolean; message: string }>;
 }
 
-const QuickTransfer: React.FC<QuickTransferProps> = ({ user, wallet }) => {
+const QuickTransfer: React.FC<QuickTransferProps> = ({ user, wallet , createTransaction}) => {
   // State for form inputs
   const [recipient, setRecipient] = useState("");
   const [amount, setAmount] = useState("");

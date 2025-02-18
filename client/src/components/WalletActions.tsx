@@ -4,14 +4,15 @@ import Button from "./button";
 import Dialog from "./dialog";
 import Input from "./input";
 import { Transaction, User, Wallet } from "../../types";
-import { createTransaction } from "../lib/transtaction";
+// import { createTransaction } from "../lib/transtaction";
 
 interface WalletActionsProps {
   user: User | null;
   wallet: Wallet | null;
+  createTransaction : (userId: number, transaction: Transaction)=> Promise<{ success: boolean; message: string }>;
 }
 
-const WalletActions: React.FC<WalletActionsProps> = ({ user, wallet })  => {
+const WalletActions: React.FC<WalletActionsProps> = ({ user, wallet, createTransaction })  => {
 
   const [amount, setAmount] = useState("");
   const [transferWallet, setTransferWallet] = useState(""); 

@@ -89,6 +89,7 @@ namespace DigitalWalletAPI.Controllers
             {
                 Wallet? senderWallet = null;
                 Wallet? receiverWallet = null;
+                decimal balance = 0;
 
                 if (transactionDto.Type == "transfer")
                 {
@@ -141,6 +142,8 @@ namespace DigitalWalletAPI.Controllers
 
                     senderWallet.Balance -= transactionDto.Amount;
                     receiverWallet.Balance += transactionDto.Amount;
+
+                    balance = senderWallet.Balance;
                 }
                 else if (transactionDto.Type == "deposit")
                 {
@@ -153,6 +156,8 @@ namespace DigitalWalletAPI.Controllers
                     if (receiverWallet == null) return NotFound(new { message = "Receiver wallet not found." });
 
                     receiverWallet.Balance += transactionDto.Amount;
+
+                    balance = receiverWallet.Balance;
                 }
                 else if (transactionDto.Type == "withdrawal")
                 {
@@ -168,6 +173,8 @@ namespace DigitalWalletAPI.Controllers
                         return BadRequest(new { message = "Insufficient funds." });
 
                     senderWallet.Balance -= transactionDto.Amount;
+
+                    balance = senderWallet.Balance;
                 }
 
 
@@ -189,14 +196,9 @@ namespace DigitalWalletAPI.Controllers
                 transactionDto.Status = transaction.Status.ToString();
                 transactionDto.Id = transaction.Id;
                 transactionDto.CreatedAt = transaction.CreatedAt;
+            
 
-                if (senderWallet != null)
-                    await _webSocketService.SendBalanceUpdate(senderWallet.Id, senderWallet.Balance, transactionDto);
-
-                if (receiverWallet != null)
-                    await _webSocketService.SendBalanceUpdate(receiverWallet.Id, receiverWallet.Balance, transactionDto);
-
-                return Ok(new { message = "Transaction successful.", transactionDto });
+                return Ok(new { message = "Transaction successful.", transactionDto , balance = balance });
             }
             catch (Exception ex)
             {

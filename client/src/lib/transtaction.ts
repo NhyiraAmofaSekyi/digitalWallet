@@ -7,7 +7,7 @@ export const createTransaction = async (userId: number, transaction: Transaction
       return { success: false, message: "Invalid user ID" };
     }
 
-    // Ensure transaction type is valid
+
     if (!["transfer", "deposit", "withdrawal"].includes(transaction.type)) {
       return { success: false, message: "Invalid transaction type" };
     }
@@ -16,7 +16,6 @@ export const createTransaction = async (userId: number, transaction: Transaction
       return { success: false, message: "Invalid transaction amount. It must be a positive number." };
     }
 
-    // Construct request body based on transaction type
     let requestBody: Partial<Transaction> = {
       type: transaction.type,
       amount: transaction.amount,
@@ -47,7 +46,6 @@ export const createTransaction = async (userId: number, transaction: Transaction
       requestBody.receiverUsername = !isValidUUID(transaction.receiverWalletId) ? transaction.receiverUsername : null;
     }
 
-    console.log("📡 Sending transaction:", requestBody);
 
     // Send POST request
     const response = await fetch(apiUrl, {
@@ -68,7 +66,6 @@ export const createTransaction = async (userId: number, transaction: Transaction
       return { success: false, message: data.message || "Failed to create transaction" };
     }
 
-    console.log("✅ Transaction Successful:", data);
     return { success: true, message: data.message || "Transaction created successfully" };
   } catch (error) {
     console.error("❌ Transaction Failed:", error);

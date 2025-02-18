@@ -18,7 +18,7 @@ function Wrapper() {
     <Routes>
       <Route
         path="/"
-        element={user != null ? <WalletDashboard /> : <Navigate to="/signin" replace />}
+        element={ user && user != null || undefined ? <WalletDashboard /> : <Navigate to="/signin" />}
       />
       <Route
         path="/register"

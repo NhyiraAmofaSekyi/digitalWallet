@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { User } from "../../types";
 import { TransactionProps } from "../components/transaction";
 
 export const useTransactions = (user: User | null) => {
   const [transactions, setTransactions] = useState<TransactionProps[]>(() => JSON.parse(localStorage.getItem("transactions") || "[]"));
 
-  const fetchTransactions = async () => {
+const fetchTransactions = async () => {
     if (!user) return;
 
     try {
@@ -24,14 +24,14 @@ export const useTransactions = (user: User | null) => {
     }
   };
 
-  useEffect(() => {
-    if (user) fetchTransactions();
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) fetchTransactions();
+  // }, [user]);
 
   const addTransaction = (transaction?: TransactionProps) => {
     if (!transaction) return;
-    setTransactions((prev) => {
-      const updated = [transaction, ...prev];
+    setTransactions(() => {
+      const updated = [transaction, ...transactions];
       localStorage.setItem("transactions", JSON.stringify(updated));
       return updated;
     });
@@ -42,5 +42,5 @@ export const useTransactions = (user: User | null) => {
     localStorage.removeItem("transactions");
   };
 
-  return { transactions, fetchTransactions, addTransaction , clearTransactions};
+  return { transactions, fetchTransactions, addTransaction , clearTransactions, setTransactions};
 };

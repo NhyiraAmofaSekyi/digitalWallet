@@ -135,6 +135,15 @@ const WalletDashboard: React.FC = () => {
     fetchTransactions();
   }, []);
 
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, [user]); 
+
+  if (!isLoaded) return null;
+
+
   return (
     <>
       <Navbar user={user} wallet={wallet} logout={logout} />

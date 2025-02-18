@@ -3,9 +3,9 @@
 1. **Single User per Browser Session**  
    - Only one user can be logged in at a time within a single browser session.  
 
-2. **Sign-In and Registration Redirect Issue**  
-   - Occasionally, after successfully signing up or logging in, users are not automatically redirected to the main page.  
-   - **Workaround:** Refresh the page and log in again.  
+2. **Sign-In and Registration Redirect Issue** *(Previously Observed During Development)*  
+   - During development, there was a bug where users were not automatically redirected to the main page after signing up or logging in.  
+   - This issue has been patched, but if it resurfaces, **refresh the page and log in again** as a workaround.  
 
 3. **Safari Login Issue (CORS & Cookies)**  
    - Safari does not support the `Secure` flag on HTTP connections, which is required for `SameSite=None` settings in CORS.  

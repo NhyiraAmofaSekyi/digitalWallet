@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom"; // Added useNavigate
+import { Link } from "react-router-dom"; // Added useNavigate
 import Input from "../components/input";
 import Button from "../components/button";
 import { useUserWallet } from "../hooks/useUserWallet";
 
 const SignIn: React.FC = () => {
   const { login } = useUserWallet();
-  const navigate = useNavigate(); // Added for navigation
+
   const [formData, setFormData] = useState({
     username: "", // Changed from 'name' to 'email' to match input type
     password: "",
@@ -26,7 +26,7 @@ const SignIn: React.FC = () => {
       const success = await login(formData.username, formData.password); // Use email instead of name
       if (success) {
 
-        navigate('/');
+        window.location.href = "/"; 
 
       } else {
         setError('Login failed. Please try again.');

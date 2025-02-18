@@ -1,8 +1,8 @@
-import { StrictMode } from 'react'
+import { StrictMode  } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import './index.css'
-
+import { useLocation } from "react-router-dom";
 import Register from './pages/register.tsx'
 import SignIn from './pages/signIn.tsx'
 import { useUserWallet } from './hooks/useUserWallet';
@@ -12,10 +12,11 @@ import WalletDashboard from './App.tsx'
 
 function Wrapper() {
   const { user } = useUserWallet();
+  const location = useLocation(); 
 
 
   return (
-    <Routes>
+    <Routes  key={location.pathname}>
       <Route
         path="/"
         element={ user && user != null || undefined ? <WalletDashboard /> : <Navigate to="/signin" />}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom"; // Added useNavigate
+import { Link } from "react-router-dom"; // Added useNavigate
 import Input from "../components/input";
 import Button from "../components/button";
 import { useUserWallet } from "../hooks/useUserWallet";
@@ -8,7 +8,7 @@ import { useUserWallet } from "../hooks/useUserWallet";
 const Register: React.FC = () => {
   const { register } = useUserWallet();
   
-  const navigate = useNavigate(); 
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -32,7 +32,7 @@ const Register: React.FC = () => {
     try {
       const success = await register(formData.username, formData.password); // Call register function
       if (success) {
-        navigate('/');
+        window.location.href = "/"; 
       } else {
         setError('Registration failed. Please try again.');
       }

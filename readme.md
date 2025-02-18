@@ -36,7 +36,7 @@ Then, update `.env` with your values before running the app.
 
 ---
 
-## **5. Stopping the Application** ⏹
+## **5. Stopping the Application** 
 
 - **For Docker:**  
   ```sh
@@ -52,13 +52,13 @@ Then, update `.env` with your values before running the app.
 
 ## **2. Running the Application Locally (Development Mode)** 
 
-### **📌 Prerequisites**
+### ** Prerequisites**
 - **Node.js** (for the client)  
 - **Yarn** (preferred package manager)  
 - **.NET 9** (for the API)  
 - **Docker** (for the database)
 
-### **📍 Step 1: Start the Database** 🗄️
+### ** Step 1: Start the Database** 🗄️
 Navigate to the `database` directory and run:
 
 ```sh
@@ -68,7 +68,7 @@ This will start PostgreSQL in a Docker container.
 
 ---
 
-### **📍 Step 2: Start the API** ⚡
+### ** Step 2: Start the API** ⚡
 Navigate to the **Digital Wallet API** directory:
 
 ```sh
@@ -89,7 +89,7 @@ dotnet wallet run dev
 
 ---
 
-### **📍 Step 3: Start the Client (React + Vite)** 
+### ** Step 3: Start the Client (React + Vite)** 
 Navigate to the **Client directory**:
 
 ```sh
